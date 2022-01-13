@@ -14,6 +14,15 @@
         <button id='loanbutton'> Get a loan</button>
     </div>
 
+    <div class='split center'>
+        <h3>Bank</h3>
+        <h4>Pay  <span id='pay'> </span> kr</h4>
+        <button id='repay' style='visibility: hidden'> Repay</button>
+
+        <button id='bankbutton'> Bank</button>
+        <button id='workbutton'> Work</button>
+
+    </div>
 
     <div class='split right'>  
         <select name='computers' id='computers'> </select>
@@ -21,42 +30,4 @@
 
     <script src='app.js'></script>
 </body>
-<style>
-    body {
-    font-family: Arial;
-    color: rgb(0, 0, 0);
-}
-
-    .split {
-    height: 100%;
-    width: 33%;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    overflow-x: hidden;
-    padding-top: 20px;
-}
-
-    .left {
-    left: 0;
-    background-color: rgb(51, 71, 248);
-}
-    .center {
-        left: 33%;
-    }
-
-    .right {
-    right: 0;
-    background-color: rgb(241, 95, 95);
-}   
-
-
-    .centered {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-}
-</style>
 </html>

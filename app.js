@@ -3,11 +3,19 @@ const loanElement = document.getElementById('loan')
 const loanSectionElement = document.getElementById('loansection');
 const loanButtonElement = document.getElementById('loanbutton');
 const computersElement = document.getElementById('computers');
+const bankButtonElement = document.getElementById('bankbutton');
+const workButtonElement = document.getElementById('workbutton');
+const repayButtonElement = document.getElementById('repay');
+
+const payElement = document.getElementById('pay');
+
+
 
 let balance = 200;
 let computers = [];
 let haveLoen = 0;
 let currentLoan = 0
+let pay = 0;
 
 
 fetch('https://noroff-komputer-store-api.herokuapp.com/computers')
@@ -38,10 +46,46 @@ const handleGetLoan = () => {
         haveLoen = 1;
         currentLoan = parseInt(selectedValue)
         loanElement.innerText = currentLoan;
-        loanSectionElement.style.visibility = "visible";
+        loanSectionElement.style.visibility = 'visible';
+        repayButtonElement.style.visibility = 'visible';
     }
 }
 
+const handleWork = () => {
+    pay += 100;
+    payElement.innerText = pay;
+}
+
+const handleBank = () => {
+    if(haveLoen === 0) {
+        balance += pay;
+        pay = 0;
+
+        balanceElement.innerText = balance;
+        payElement.innerText = pay;
+    }
+}
+
+const handleRepay = () => {
+    if(pay >= currentLoan) {
+        pay -= currentLoan;
+        currentLoan = 0;
+        balance += pay;
+        pay = 0;
+        haveLoen = 0;
+        balanceElement.innerText = balance;
+        payElement.innerText = pay;
+        loanSectionElement.style.visibility = 'hidden';
+        repayButtonElement.style.visibility = 'hidden';
+
+    }
+}
 
 balanceElement.innerText = balance;
 loanButtonElement.addEventListener('click', handleGetLoan);
+
+payElement.innerText = pay;
+workButtonElement.addEventListener('click', handleWork);
+
+bankButtonElement.addEventListener('click', handleBank);
+repayButtonElement.addEventListener('click', handleRepay);

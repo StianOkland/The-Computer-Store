@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class='split left'>
+        <h3>Joe Banker</h3>
+        <h4>Balance  <span id='balance'> </span> kr</h4>
+        <h4 style="visibility: hidden;" id='loansection'> Loan  <span id='loan'> </span> kr</h4>
+        <button id='loanbutton'> Get a loan</button>
+    </div>
+
+
+    <div class='split right'>  
+        <select name='computers' id='computers'> </select>
+    </div>
+
+    <script src='app.js'></script>
+</body>
+<style>
+    body {
+    font-family: Arial;
+    color: rgb(0, 0, 0);
+}
+
+    .split {
+    height: 100%;
+    width: 33%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    overflow-x: hidden;
+    padding-top: 20px;
+}
+
+    .left {
+    left: 0;
+    background-color: rgb(51, 71, 248);
+}
+    .center {
+        left: 33%;
+    }
+
+    .right {
+    right: 0;
+    background-color: rgb(241, 95, 95);
+}   
+
+
+    .centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+</style>
+</html>

@@ -6,9 +6,12 @@ const computersElement = document.getElementById('computers');
 const bankButtonElement = document.getElementById('bankbutton');
 const workButtonElement = document.getElementById('workbutton');
 const repayButtonElement = document.getElementById('repay');
-
 const payElement = document.getElementById('pay');
-
+const computerNameElement = document.getElementById('computername');
+const computerDescriptionElement = document.getElementById('computerdescription');
+const computerPriceElement = document.getElementById('computerprice');
+const buyButtonElement = document.getElementById('buybutton');
+const imageElement = document.getElementById('computerimage');
 
 
 let balance = 200;
@@ -16,6 +19,7 @@ let computers = [];
 let haveLoen = 0;
 let currentLoan = 0
 let pay = 0;
+let computerprice = 0;
 
 
 fetch('https://noroff-komputer-store-api.herokuapp.com/computers')
@@ -32,6 +36,15 @@ const addComputerToMenu = (computer) => {
     computerElement.value = computer.id;
     computerElement.appendChild(document.createTextNode(computer.title));
     computersElement.appendChild(computerElement);
+}
+
+const handleComputerChange = e => {
+    const selectedComputer = computers[e.target.selectedIndex];
+    computerNameElement.innerText = selectedComputer.title;
+    computerDescriptionElement.innerText = selectedComputer.description;
+    computerPriceElement.innerText = selectedComputer.price;
+    computerprice = selectedComputer.price
+    imageElement.src =  'https://noroff-komputer-store-api.herokuapp.com/' + selectedComputer.image;
 }
 
 
@@ -81,11 +94,26 @@ const handleRepay = () => {
     }
 }
 
+const handleBy = () => {
+    if(balance > computerprice) {
+        alert('You are now a proud owner of this computer!');
+        balance -= computerprice;
+        balanceElement.innerText = balance;
+
+    }
+    else {
+        alert('You dont have enough');
+    }
+
+}
+
 balanceElement.innerText = balance;
-loanButtonElement.addEventListener('click', handleGetLoan);
-
 payElement.innerText = pay;
-workButtonElement.addEventListener('click', handleWork);
 
+
+loanButtonElement.addEventListener('click', handleGetLoan);
+workButtonElement.addEventListener('click', handleWork);
 bankButtonElement.addEventListener('click', handleBank);
 repayButtonElement.addEventListener('click', handleRepay);
+buyButtonElement.addEventListener('click', handleBy)
+computersElement.addEventListener('change', handleComputerChange)

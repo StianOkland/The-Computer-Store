@@ -7,14 +7,14 @@
     <title>Document</title>
 </head>
 <body>
-    <div class='split left'>
+    <div>
         <h3>Joe Banker</h3>
         <h4>Balance  <span id='balance'> </span> kr</h4>
         <h4 style="visibility: hidden;" id='loansection'> Loan  <span id='loan'> </span> kr</h4>
         <button id='loanbutton'> Get a loan</button>
     </div>
 
-    <div class='split center'>
+    <div>
         <h3>Bank</h3>
         <h4>Pay  <span id='pay'> </span> kr</h4>
         <button id='repay' style='visibility: hidden'> Repay</button>
@@ -24,8 +24,14 @@
 
     </div>
 
-    <div class='split right'>  
+    <div>  
+        <h3>Computer</h3>
         <select name='computers' id='computers'> </select>
+        <img id='computerimage' style="height: 100px; width: 100px;">
+        <h4><span id='computername'> </span></h4>
+        <h5><span id='computerdescription'> </span></h5>
+        <h5><span id='computerprice'> </span> NOK</h5>
+        <button id='buybutton'> BUY NOW</button>
     </div>
 
     <script src='app.js'></script>

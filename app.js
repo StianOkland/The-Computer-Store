@@ -1,16 +1,16 @@
 const balanceElement = document.getElementById('balance');
 const loanElement = document.getElementById('loan')
 const loanSectionElement = document.getElementById('loansection');
-const loanButtonElement = document.getElementById('loanbutton');
+const loanButtonElement = document.getElementById('btn-loan');
 const computersElement = document.getElementById('computers');
-const bankButtonElement = document.getElementById('bankbutton');
-const workButtonElement = document.getElementById('workbutton');
+const bankButtonElement = document.getElementById('btn-bank');
+const workButtonElement = document.getElementById('btn-work');
 const repayButtonElement = document.getElementById('repay');
 const payElement = document.getElementById('pay');
 const computerNameElement = document.getElementById('computername');
 const computerDescriptionElement = document.getElementById('computerdescription');
 const computerPriceElement = document.getElementById('computerprice');
-const buyButtonElement = document.getElementById('buybutton');
+const buyButtonElement = document.getElementById('btn-buy');
 const imageElement = document.getElementById('computerimage');
 const featuresElement = document.getElementById('features');
 
@@ -18,8 +18,8 @@ const featuresElement = document.getElementById('features');
 
 let balance = 200;
 let computers = [];
-let haveLoen = 0;
-let currentLoan = 0
+let haveLoan = 0;
+let currentLoan = 0;
 let pay = 0;
 let computerprice = 0;
 
@@ -50,7 +50,7 @@ const handleComputerChange = e => {
     computerNameElement.innerText = selectedComputer.title;
     computerDescriptionElement.innerText = selectedComputer.description;
     computerPriceElement.innerText = selectedComputer.price;
-    computerprice = selectedComputer.price
+    computerprice = selectedComputer.price;
     imageElement.src = selectedComputer.image;
 
     featuresElement.innerText = '';
@@ -79,13 +79,13 @@ const handleBy = () => {
 // Handle new loan. If there is no loan from before the user can loan upto the double of the current balance.
 // Set repay button to visible and makes the loan visible for the user.
 const handleGetLoan = () => {
-    let selectedValue = prompt('How much to loan? Must be a number', '')
+    let selectedValue = prompt('How much to loan? Must be a number', '');
     
-    if(haveLoen != 1 && selectedValue != null && parseInt(selectedValue) <= balance * 2) {        
+    if(haveLoan != 1 && selectedValue != null && parseInt(selectedValue) <= balance * 2) {        
         balance += parseInt(selectedValue);
         balanceElement.innerText = balance;
-        haveLoen = 1;
-        currentLoan = parseInt(selectedValue)
+        haveLoan = 1;
+        currentLoan = parseInt(selectedValue);
         loanElement.innerText = currentLoan;
         loanSectionElement.style.visibility = 'visible';
         repayButtonElement.style.visibility = 'visible';
@@ -101,7 +101,7 @@ const handleWork = () => {
 // If the user does not have a loan bank all of pay to the balance.
 // If have loan, 10% of pay goes to pay back the loan, rest is added to the balance.
 const handleBank = () => {
-    if(haveLoen === 0) {
+    if(haveLoan === 0) {
         balance += pay;
         pay = 0;
 
@@ -134,7 +134,7 @@ const handleRepay = () => {
         currentLoan = 0;
         balance += pay;
         pay = 0;
-        haveLoen = 0;
+        haveLoan = 0;
         balanceElement.innerText = balance;
         payElement.innerText = pay;
         loanSectionElement.style.visibility = 'hidden';
@@ -152,5 +152,5 @@ loanButtonElement.addEventListener('click', handleGetLoan);
 workButtonElement.addEventListener('click', handleWork);
 bankButtonElement.addEventListener('click', handleBank);
 repayButtonElement.addEventListener('click', handleRepay);
-buyButtonElement.addEventListener('click', handleBy)
-computersElement.addEventListener('change', handleComputerChange)
+buyButtonElement.addEventListener('click', handleBy);
+computersElement.addEventListener('change', handleComputerChange);
